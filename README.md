@@ -30,7 +30,7 @@ make
 ```
 
 ## 下载
-地址 [releases](https://github.com/lizongying/my-tv-0/releases/latest)
+[releases](https://github.com/lizongying/my-tv-0/releases/latest)
 
 ## 赞赏
 
