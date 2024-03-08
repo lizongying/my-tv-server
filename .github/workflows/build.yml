@@ -1,0 +1,49 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-tls-generator:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Golang
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+
+      - name: Build
+        run: |
+          go vet ./cmd/server
+
+          GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -ldflags "-s -w" -o ./releases/my-tv-server_linux_amd64 ./cmd/server
+
+          GOOS=linux GOARCH=arm64 CGO_ENABLED=0 go build -ldflags "-s -w" -o ./releases/my-tv-server_linux_arm64 ./cmd/server
+
+          GOOS=darwin GOARCH=amd64 CGO_ENABLED=0 go build -ldflags "-s -w" -o ./releases/my-tv-server_darwin_amd64 ./cmd/server
+
+          GOOS=darwin GOARCH=arm64 CGO_ENABLED=0 go build -ldflags "-s -w" -o ./releases/my-tv-server_darwin_arm64 ./cmd/server
+
+          GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -ldflags "-s -w" -o ./releases/my-tv-server_windows_amd64.exe ./cmd/server
+
+      - uses: actions/upload-artifact@v3
+        with:
+          path: ./releases/my-tv-server_linux_amd64
+      - uses: actions/upload-artifact@v3
+        with:
+          path: ./releases/my-tv-server_linux_arm64
+      - uses: actions/upload-artifact@v3
+        with:
+          path: ./releases/my-tv-server_darwin_amd64
+      - uses: actions/upload-artifact@v3
+        with:
+          path: ./releases/my-tv-server_darwin_arm64
+      - uses: actions/upload-artifact@v3
+        with:
+          path: ./releases/my-tv-server_windows_amd64.exe
