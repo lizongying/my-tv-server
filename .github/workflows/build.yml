@@ -15,7 +15,6 @@ jobs:
 
     permissions:
       contents: write
-      packages: write
 
     steps:
       - name: Checkout code
@@ -59,6 +58,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./releases/my-tv-server_linux_amd64
           asset_name: my-tv-server_linux_amd64-${{ github.ref_name }}
+          asset_content_type: application/octet-stream
 
       - name: Upload Release Asset linux_arm64
         uses: actions/upload-release-asset@v1
@@ -68,6 +68,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./releases/my-tv-server_linux_arm64
           asset_name: my-tv-server_linux_arm64-${{ github.ref_name }}
+          asset_content_type: application/octet-stream
 
       - name: Upload Release Asset darwin_amd64
         uses: actions/upload-release-asset@v1
@@ -77,6 +78,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./releases/my-tv-server_darwin_amd64
           asset_name: my-tv-server_darwin_amd64-${{ github.ref_name }}
+          asset_content_type: application/octet-stream
 
       - name: Upload Release Asset darwin_arm64
         uses: actions/upload-release-asset@v1
@@ -86,6 +88,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./releases/my-tv-server_darwin_arm64
           asset_name: my-tv-server_darwin_arm64-${{ github.ref_name }}
+          asset_content_type: application/octet-stream
 
       - name: Upload Release Asset windows_amd64
         uses: actions/upload-release-asset@v1
@@ -95,6 +98,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./releases/my-tv-server_windows_amd64.exe
           asset_name: my-tv-server_windows_amd64-${{ github.ref_name }}.exe
+          asset_content_type: application/octet-stream
 
 
   build-docker:
