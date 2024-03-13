@@ -36,7 +36,7 @@ make
 
 ## 镜像
 
-[ghcr.io](https://github.com/lizongying/go-crawler-example/pkgs/container/my-tv-server)
+[ghcr.io](https://github.com/lizongying/my-tv-server/pkgs/container/my-tv-server)
 
 [hub.docker.com](https://hub.docker.com/r/lizongying/my-tv-server)
 
