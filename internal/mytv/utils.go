@@ -1,8 +1,11 @@
 package mytv
 
 import (
+	"fmt"
+	"io"
 	"log"
 	"net"
+	"net/http"
 )
 
 func Lan() (lanIp string) {
@@ -23,6 +26,17 @@ func Lan() (lanIp string) {
 				}
 			}
 		}
+	}
+	return
+}
+
+func Internet() (ip string) {
+	resp, err := http.Get("https://api64.ipify.org?format=text")
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
+	if err == nil {
+		_, _ = fmt.Fscanf(resp.Body, "%s", &ip)
 	}
 	return
 }

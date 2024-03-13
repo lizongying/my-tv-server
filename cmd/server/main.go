@@ -16,7 +16,9 @@ func main() {
 	flag.Parse()
 	port, _ := strconv.Atoi(*portPtr)
 
-	log.Printf("http://127.0.0.1:%d/mytv/index.html\n", port)
+	log.Printf("Local: http://127.0.0.1:%d/mytv/index.html\n", port)
+	log.Printf("Lan: http://%s:%d/mytv/index.html\n", mytv.Lan(), port)
+	log.Printf("Internet: http://%s:%d/mytv/index.html\n", mytv.Internet(), port)
 
 	m, _ := mytv.NewMytv(port)
 

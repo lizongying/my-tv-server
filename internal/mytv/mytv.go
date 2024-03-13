@@ -15,7 +15,9 @@ type Mytv struct {
 type RespUpload struct {
 	Code int `json:"code"`
 	Data struct {
-		ChannelsUrl string `json:"channels_url"`
+		LocalUrl    string `json:"local_url"`
+		LanUrl      string `json:"lan_url"`
+		InternetUrl string `json:"internet_url"`
 	} `json:"data"`
 }
 
@@ -36,7 +38,9 @@ func (m *Mytv) Upload(w http.ResponseWriter, r *http.Request) {
 
 	m.channels = body
 	var resp = new(RespUpload)
-	resp.Data.ChannelsUrl = fmt.Sprintf("%s:%d/0", Lan(), m.port)
+	resp.Data.LocalUrl = fmt.Sprintf("%s:%d/0", "127.0.0.1", m.port)
+	resp.Data.LanUrl = fmt.Sprintf("%s:%d/0", Lan(), m.port)
+	resp.Data.InternetUrl = fmt.Sprintf("%s:%d/0", Internet(), m.port)
 	data, _ := json.Marshal(resp)
 	_, _ = w.Write(data)
 }
