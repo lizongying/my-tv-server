@@ -2,28 +2,90 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的电视·服务</title>
+    <style>
+        .container {
+            width: 100%;
+        }
+
+        .options {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .option {
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .option.active {
+            background-color: #ccc;
+        }
+
+        .message {
+            padding: 10px;
+            border: 1px solid #ccc;
+            min-height: 50px;
+            line-height: 1.5em;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <h1>我的电视·服务</h1>
-<h2>上传文件：</h2>
-<p>示例（example.json）</p>
-<pre>[
+<hr/>
+<p>输入支持.json, .txt, .m3u</p>
+<input type="file" id="input" multiple/>
+<hr/>
+<div class="container">
+    <div class="options">
+        <div class="option active" data-message="message0" data-type="raw">输出原始</div>
+        <div class="option" data-message="message1" data-type="json">输出.json</div>
+        <div class="option" data-message="message2" data-type="txt">输出.txt（暂不支持）</div>
+        <div class="option" data-message="message3" data-type="m3u">输出.m3u（暂不支持）</div>
+    </div>
+
+    <div id="message0" class="message">
+        <pre></pre>
+    </div>
+
+    <div id="message1" class="message hide">
+        <pre>[
   {
-    "category": "央视",
-    "logo": "https://resources.yangshipin.cn/assets/oms/image/202306/266da7b43c03e2312186b4a999e0f060e8f15b10d2cc2c9aa32171819254cf1a.png?imageMogr2/format/webp",
-    "title": "CCTV13",
-    "videoUrl": [
-      "https://live-play.cctvnews.cctv.com/cctv/merge_cctv13.m3u8"
+    "group": "组",
+    "logo": "logo.png",
+    "name": "",
+    "title": "标题",
+    "uris": [
+      "index.m3u8"
     ]
   }
 ]</pre>
-<input type="file" id="input" multiple/>
+    </div>
+
+    <div id="message2" class="message hide">
+        <pre>组,#genre#
+标题,index.m3u8</pre>
+    </div>
+
+    <div id="message3" class="message hide">
+        <pre>#EXTM3U x-tvg-url=""
+#EXTINF:-1 tvg-name="" tvg-logo="logo.png" group-title="组",标题
+index.m3u8</pre>
+    </div>
+</div>
 <hr/>
-<h2>上传文件后请把以下地址加入配置：</h2>
+<h2>上传文件后可以把以下地址之一加入播放器配置：</h2>
 <p>Local: <a id="local" target="_blank"></a></p>
 <p>Lan: <a id="lan" target="_blank"></a></p>
 <p>Internet: <a id="internet" target="_blank"></a></p>
 </body>
 <script src="/mytv/index.js"></script>
+<script>
+</script>
 </html>

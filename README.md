@@ -4,6 +4,14 @@
 
 [my-tv-server](https://github.com/lizongying/my-tv-server)
 
+## 功能
+
+1. 支持原始输出
+2. 支持json、txt、m3u之间格式转化
+3. 支持发布到本地、局域网、公网
+4. 支持linux、mac、windows系统
+5. 支持配置到“我的电视·〇”等视频播放器
+
 ## 下载
 
 [releases](https://github.com/lizongying/my-tv-0/releases/latest)
@@ -19,6 +27,8 @@
 ```shell
 ./my-tv-server
 ```
+
+* 默认端口8000，使用其他端口 `--port 8001`
 
 ![image](./screenshots/img.png)
 
