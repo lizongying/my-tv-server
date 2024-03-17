@@ -38,11 +38,12 @@ func Lan() (lanIp string) {
 
 func Internet() (ip string) {
 	resp, err := http.Get("https://api64.ipify.org?format=text")
+	if err != nil {
+		return ""
+	}
 	defer func(Body io.ReadCloser) {
 		_ = Body.Close()
 	}(resp.Body)
-	if err == nil {
-		_, _ = fmt.Fscanf(resp.Body, "%s", &ip)
-	}
+	_, _ = fmt.Fscanf(resp.Body, "%s", &ip)
 	return
 }
