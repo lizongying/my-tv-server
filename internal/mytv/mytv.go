@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type Mytv struct {
+type MyTv struct {
 	port     int
 	channels []byte
 }
@@ -21,15 +21,15 @@ type RespUpload struct {
 	} `json:"data"`
 }
 
-func NewMytv(port int) (m *Mytv, err error) {
-	m = &Mytv{
+func NewMyTv(port int) (m *MyTv, err error) {
+	m = &MyTv{
 		port: port,
 	}
 
 	return
 }
 
-func (m *Mytv) Upload(w http.ResponseWriter, r *http.Request) {
+func (m *MyTv) Upload(w http.ResponseWriter, r *http.Request) {
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, "Error reading request body", http.StatusInternalServerError)
@@ -45,7 +45,7 @@ func (m *Mytv) Upload(w http.ResponseWriter, r *http.Request) {
 	_, _ = w.Write(data)
 }
 
-func (m *Mytv) Channels(w http.ResponseWriter, _ *http.Request) {
+func (m *MyTv) Channels(w http.ResponseWriter, _ *http.Request) {
 	if len(m.channels) == 0 {
 		http.Error(w, "Error reading request body", http.StatusInternalServerError)
 	}

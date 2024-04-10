@@ -2,6 +2,9 @@ const input = document.getElementById('input');
 const local = document.getElementById('local');
 const lan = document.getElementById('lan');
 const internet = document.getElementById('internet');
+const localJson = document.getElementById('local-json');
+const lanJson = document.getElementById('lan-json');
+const internetJson = document.getElementById('internet-json');
 const options = document.querySelectorAll('.option');
 const messages = document.querySelectorAll('.message');
 
@@ -154,3 +157,23 @@ const sendFile = async (body) => {
         internet.innerText = internetUrl;
     }
 }
+
+(async ()=>{
+    const response = await fetch('/ip/info');
+    const json = await response.json();
+    const localUrl = json?.data?.local_url
+    if (localUrl) {
+        localJson.href = `http://${localUrl}/example.json`;
+        localJson.innerText = `http://${localUrl}/example.json`;
+    }
+    const lanUrl = json?.data?.lan_url
+    if (lanUrl) {
+        lanJson.href = `http://${lanUrl}/example.json`;
+        lanJson.innerText = `http://${lanUrl}/example.json`;
+    }
+    const internetUrl = json?.data?.internet_url
+    if (internetUrl) {
+        internetJson.href = `http://${internetUrl}/example.json`;
+        internetJson.innerText = `http://${internetUrl}/example.json`;
+    }
+})()
