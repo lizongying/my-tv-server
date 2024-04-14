@@ -1,3 +1,5 @@
+import {decode, encode, verify} from './gua64.min.js';
+
 const input = document.getElementById('input');
 const local = document.getElementById('local');
 const lan = document.getElementById('lan');
@@ -73,6 +75,9 @@ const read = async (file, extension) => {
                 break
             }
             case 'json': {
+                if (verify(out)) {
+                    out = decode(out)
+                }
                 switch (extension) {
                     case 'txt': {
                         const lines = out.split('\n');
