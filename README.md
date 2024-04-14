@@ -30,6 +30,13 @@
 
 * 默认端口8000，使用其他端口 `--port 8001`
 
+测试文件：
+* [example_encode.json](./assets/example_encode.json)
+* [example_encode.m3u](./assets/example_encode.m3u)
+* [example_encode.txt](./assets/example_encode.txt)
+
+注：使用了[gua64](https://github.com/lizongying/go-gua64)编码
+
 ![image](./screenshots/img.png)
 
 ## 测试
