@@ -108,11 +108,17 @@ const read = async (file, extension) => {
                             line = line.trim();
                             if (line.startsWith('#EXTINF')) {
                                 const infos = line.split(',');
-                                const title = infos.pop()
+                                const title = infos.pop();
+
+                                const nameMatchResult = infos[0]?.match(nameRegex);
+                                const name = nameMatchResult ? nameMatchResult[1] : '';
+
+                                const logoMatchResult = infos[0]?.match(logRegex);
+                                const logo = logoMatchResult ? logoMatchResult[1] : '';
                                 list.push({
-                                    name: infos[0]?.match(nameRegex)[1],
+                                    name: name,
                                     group: infos[0]?.match(groupRegex)[1],
-                                    logo: infos[0]?.match(logRegex)[1],
+                                    logo: logo,
                                     title: title,
                                     uris: [lines[lines.indexOf(line) + 1]]
                                 })
