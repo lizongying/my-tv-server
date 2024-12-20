@@ -60,3 +60,7 @@ make
 ## 赞赏
 
 ![image](./screenshots/appreciate.jpeg)
+
+## 感謝
+
+[TVLogo](https://github.com/vircloud/TVLogo)
